@@ -1,9 +1,11 @@
 import streamlit as st
+import pandas as pd  # Use pandas to show data as tables
 
 st.title("🎓 College Timetable Builder")
+
+# ------------------- COLLEGE FORM -------------------
 st.header("📋 Enter College Details")
 
-# Form start
 with st.form("college_form"):
     college_name = st.text_input("College Name")
     department = st.text_input("Department")
@@ -11,14 +13,14 @@ with st.form("college_form"):
     semester = st.selectbox("Semester", ["Semester 1", "Semester 2", "Semester 3", "Semester 4",
                                          "Semester 5", "Semester 6", "Semester 7", "Semester 8"])
     
-    # Submit button
     submitted = st.form_submit_button("Submit")
 
     if submitted:
         st.success(f"✅ Details Submitted! College: {college_name}, Dept: {department}, Year: {year}, Sem: {semester}")
-    st.header("📘 Add Subject & Teacher Info")
 
-import pandas as pd  # Only include this if not already imported at top
+
+# ------------------- SUBJECT FORM -------------------
+st.header("📘 Add Subject & Teacher Info")
 
 with st.form("subject_form"):
     subject = st.text_input("Enter Subject Name")
@@ -38,12 +40,14 @@ with st.form("subject_form"):
 
         st.write("📄 Subject Details Table:")
         st.dataframe(df)
-    st.header("🗓️ Teacher Availability")
+
+
+# ------------------- TEACHER AVAILABILITY -------------------
+st.header("🗓️ Teacher Availability")
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 hours = ["9AM-10AM", "10AM-11AM", "11AM-12PM", "12PM-1PM", "2PM-3PM", "3PM-4PM"]
 
-# Create availability matrix
 availability = {}
 
 for day in days:
@@ -53,6 +57,5 @@ for day in days:
             key = f"{day}_{hour}"
             availability[day][hour] = st.checkbox(f"{hour}", key=key)
 
-# Show result as a nested table
 st.subheader("✅ Selected Availability")
 st.write(availability)
