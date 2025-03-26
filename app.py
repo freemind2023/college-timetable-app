@@ -16,3 +16,25 @@ with st.form("college_form"):
 
     if submitted:
         st.success(f"✅ Details Submitted! College: {college_name}, Dept: {department}, Year: {year}, Sem: {semester}")
+    st.header("📘 Add Subject & Teacher Info")
+
+import pandas as pd  # Only include this if not already imported at top
+
+with st.form("subject_form"):
+    subject = st.text_input("Enter Subject Name")
+    teacher = st.text_input("Enter Teacher Name")
+    hours = st.number_input("Hours per Week", min_value=1, max_value=10, step=1)
+
+    submitted_subject = st.form_submit_button("Add Subject")
+
+    if submitted_subject:
+        st.success("✅ Subject added successfully!")
+
+        df = pd.DataFrame({
+            'Subject': [subject],
+            'Teacher': [teacher],
+            'Hours/Week': [hours]
+        })
+
+        st.write("📄 Subject Details Table:")
+        st.dataframe(df)
