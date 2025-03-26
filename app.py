@@ -59,3 +59,31 @@ for day in days:
 
 st.subheader("✅ Selected Availability")
 st.write(availability)
+
+# ------------------- TEACHER AVAILABILITY -------------------
+    st.header("🏫 Add Classrooms and 🎓 Batches")
+
+# CLASSROOMS
+num_classrooms = st.number_input("How many classrooms do you have?", min_value=1, max_value=20, step=1)
+
+classroom_names = []
+for i in range(num_classrooms):
+    name = st.text_input(f"Enter name of Classroom {i+1}", key=f"class_{i}")
+    classroom_names.append(name)
+
+# BATCHES
+num_batches = st.number_input("How many batches/sections?", min_value=1, max_value=10, step=1)
+
+batch_names = []
+for i in range(num_batches):
+    batch = st.text_input(f"Enter name of Batch {i+1}", key=f"batch_{i}")
+    batch_names.append(batch)
+
+# Display Result
+st.subheader("🏫 Classrooms List:")
+st.write(classroom_names)
+
+st.subheader("🎓 Batches List:")
+st.write(batch_names)
+
+
