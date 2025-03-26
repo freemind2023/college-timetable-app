@@ -38,3 +38,21 @@ with st.form("subject_form"):
 
         st.write("📄 Subject Details Table:")
         st.dataframe(df)
+    st.header("🗓️ Teacher Availability")
+
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+hours = ["9AM-10AM", "10AM-11AM", "11AM-12PM", "12PM-1PM", "2PM-3PM", "3PM-4PM"]
+
+# Create availability matrix
+availability = {}
+
+for day in days:
+    with st.expander(day):
+        availability[day] = {}
+        for hour in hours:
+            key = f"{day}_{hour}"
+            availability[day][hour] = st.checkbox(f"{hour}", key=key)
+
+# Show result as a nested table
+st.subheader("✅ Selected Availability")
+st.write(availability)
