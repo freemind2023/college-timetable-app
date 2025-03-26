@@ -17,5 +17,4 @@ with st.form("college_form"):
     submitted = st.form_submit_button("Submit")
 
     if submitted:
-        st.success(f"✅ Details Submitted!
-College: {college_name}, Dept: {department}, Year: {year}, Sem: {semester}")
+   st.success(f"✅ Details Submitted! College: {college_name}, Dept: {department}, Year: {year}, Sem: {semester}")
